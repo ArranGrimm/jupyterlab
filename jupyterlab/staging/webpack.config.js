@@ -305,6 +305,28 @@ module.exports = [
           include: sourceMapRes,
           use: ['source-map-loader'],
           enforce: 'pre'
+        },
+        // Add Babel transformation for Chrome 79 compatibility - keep baseConfig rules
+        {
+          test: /\.m?js$/,
+          // Process ALL JS files including node_modules to ensure Chrome 79 compatibility
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: [
+                [
+                  '@babel/preset-env',
+                  {
+                    targets: {
+                      chrome: '79'
+                    },
+                    useBuiltIns: false,
+                    modules: false
+                  }
+                ]
+              ]
+            }
+          }
         }
       ]
     },
