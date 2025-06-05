@@ -117,7 +117,6 @@
     "@jupyterlab/tooltip-extension": "~4.4.3",
     "@jupyterlab/translation": "~4.4.3",
     "@jupyterlab/translation-extension": "~4.4.3",
-    "@jupyterlab/ui-components": "~4.4.3",
     "@jupyterlab/ui-components-extension": "~4.4.3",
     "@jupyterlab/vega5-extension": "~4.4.3",
     "@jupyterlab/workspaces": "~4.4.3",
@@ -143,7 +142,8 @@
     "@microsoft/fast-foundation": "^2.49.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "yjs": "^13.5.40"
+    "yjs": "^13.5.40",
+    "@jupyterlab/ui-components": "portal:/D:/WorkSpace/crack-python/work/jupyterlab/packages/ui-components"
   },
   "dependencies": {
     "@jupyterlab/application": "~4.4.3",

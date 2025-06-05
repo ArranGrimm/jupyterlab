@@ -3597,9 +3597,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jupyterlab/ui-components@npm:~4.4.3":
-  version: 4.4.3
-  resolution: "@jupyterlab/ui-components@npm:4.4.3"
+"@jupyterlab/ui-components@portal:/D:/WorkSpace/crack-python/work/jupyterlab/packages/ui-components::locator=%40jupyterlab%2Fapplication-top%40workspace%3A.":
+  version: 0.0.0-use.local
+  resolution: "@jupyterlab/ui-components@portal:/D:/WorkSpace/crack-python/work/jupyterlab/packages/ui-components::locator=%40jupyterlab%2Fapplication-top%40workspace%3A."
   dependencies:
     "@jupyter/react-components": ^0.16.6
     "@jupyter/web-components": ^0.16.6
@@ -3624,9 +3624,8 @@ __metadata:
     typestyle: ^2.0.4
   peerDependencies:
     react: ^18.2.0
-  checksum: a7a1ef9e5a48754d4545fdbe1908c361604cabb5665541f3a1a42d7fcf0ec0c6bc78e9c3c83999fb356f3542a01666ba9e036dcef2819ae435f47e83628ae3ca
   languageName: node
-  linkType: hard
+  linkType: soft
 
 "@jupyterlab/vega5-extension@npm:~4.4.3":
   version: 4.4.3
