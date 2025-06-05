@@ -120,7 +120,6 @@
     "@jupyterlab/ui-components-extension": "~4.4.3",
     "@jupyterlab/vega5-extension": "~4.4.3",
     "@jupyterlab/workspaces": "~4.4.3",
-    "@jupyterlab/workspaces-extension": "~4.4.3",
     "@lezer/common": "^1.0.0",
     "@lezer/highlight": "^1.0.0",
     "@lumino/algorithm": "^2.0.0",
@@ -139,11 +138,12 @@
     "@lumino/virtualdom": "^2.0.0",
     "@lumino/widgets": "^2.3.1-alpha.0",
     "@microsoft/fast-element": "^1.12.0",
-    "@microsoft/fast-foundation": "^2.49.2",
+    "@microsoft/fast-foundation": "2.49.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "yjs": "^13.5.40",
-    "@jupyterlab/ui-components": "portal:/D:/WorkSpace/crack-python/work/jupyterlab/packages/ui-components"
+    "@jupyterlab/ui-components": "portal:/D:/WorkSpace/crack-python/work/jupyterlab/packages/ui-components",
+    "@jupyterlab/workspaces-extension": "portal:/D:/WorkSpace/crack-python/work/jupyterlab/packages/workspaces-extension"
   },
   "dependencies": {
     "@jupyterlab/application": "~4.4.3",

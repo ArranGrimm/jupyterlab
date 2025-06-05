@@ -97,6 +97,27 @@ The latest versions of the following browsers are currently _known to work_:
 
 See our [documentation](http://jupyterlab.readthedocs.io/en/stable/getting_started/installation.html) for additional details.
 
+### Chrome 79 兼容性分支
+
+> [!NOTE]
+> **本分支专门针对 Chrome 79 兼容性问题进行了全面修复**
+> 
+> 此分支解决了 JupyterLab 4.4.3 在 Chrome 79 中的多个兼容性问题，包括：
+> - ✅ 现代 JavaScript 语法兼容性（Optional Chaining、Nullish Coalescing）
+> - ✅ WeakRef 特性兼容性（ES2021 → ES2018 兼容实现）
+> - ✅ 现代 DOM API 兼容性（ResizeObserver、replaceChildren）
+> - ✅ CSS4 选择器兼容性（:has() 选择器）
+> - ✅ 第三方依赖兼容性（Microsoft FAST 组件栈溢出修复）
+> 
+> **适用场景**：
+> - 企业环境中无法升级浏览器的场景
+> - 教育机构使用旧版浏览器的需求
+> - 需要支持 Chrome 79-83 的生产环境
+> 
+> **技术方案**：采用源码级修复 + API兼容性处理 + 构建级转换的全面策略，确保完整功能和稳定性。
+> 
+> 详细技术文档请参考：[CHROME79_COMPATIBILITY_SOLUTION.md](CHROME79_COMPATIBILITY_SOLUTION.md)
+
 ---
 
 ## Getting help

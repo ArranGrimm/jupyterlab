@@ -3641,9 +3641,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jupyterlab/workspaces-extension@npm:~4.4.3":
-  version: 4.4.3
-  resolution: "@jupyterlab/workspaces-extension@npm:4.4.3"
+"@jupyterlab/workspaces-extension@portal:/D:/WorkSpace/crack-python/work/jupyterlab/packages/workspaces-extension::locator=%40jupyterlab%2Fapplication-top%40workspace%3A.":
+  version: 0.0.0-use.local
+  resolution: "@jupyterlab/workspaces-extension@portal:/D:/WorkSpace/crack-python/work/jupyterlab/packages/workspaces-extension::locator=%40jupyterlab%2Fapplication-top%40workspace%3A."
   dependencies:
     "@jupyterlab/application": ^4.4.3
     "@jupyterlab/apputils": ^4.5.3
@@ -3657,9 +3657,8 @@ __metadata:
     "@jupyterlab/ui-components": ^4.4.3
     "@jupyterlab/workspaces": ^4.4.3
     react: ^18.2.0
-  checksum: 324816b6bb45acf8f293d56a20b1a5016d2628a3939b7c2c2dde28a0499de40c1ec7d2cedbdf82c1fd3434b33dd1d66a256255942812b37724642dde845adc0b
   languageName: node
-  linkType: hard
+  linkType: soft
 
 "@jupyterlab/workspaces@npm:~4.4.3":
   version: 4.4.3
@@ -4040,15 +4039,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@microsoft/fast-foundation@npm:^2.49.2":
-  version: 2.50.0
-  resolution: "@microsoft/fast-foundation@npm:2.50.0"
+"@microsoft/fast-foundation@npm:2.49.6":
+  version: 2.49.6
+  resolution: "@microsoft/fast-foundation@npm:2.49.6"
   dependencies:
-    "@microsoft/fast-element": ^1.14.0
+    "@microsoft/fast-element": ^1.13.0
     "@microsoft/fast-web-utilities": ^5.4.1
     tabbable: ^5.2.0
     tslib: ^1.13.0
-  checksum: 651501eb8cd5a3e583638f70a4e7c0ad30952fe12adedd5c4c24861515d0aaeec0e83d1f1cd25dece899d2fa1614b415001c461f76bb84b20e1a8e18a3fcf219
+  checksum: 15fdf9dd0b910a72a9cff140f765d522304df11f8a78d5a97a815e2bbae25027c2b336e94f89ca31e650d6aabe17b590b7453acc0d2cb7340c219eb76350a942
   languageName: node
   linkType: hard
 
