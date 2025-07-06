@@ -143,6 +143,7 @@
     "react-dom": "^18.2.0",
     "yjs": "^13.5.40",
     "glob": "^9.3.5",
+    "ws": "8.17.1",
     "@jupyterlab/ui-components": "portal:../../packages/ui-components",
     "@jupyterlab/workspaces-extension": "portal:../..//packages/workspaces-extension"
   },
