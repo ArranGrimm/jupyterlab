@@ -12,7 +12,7 @@
   },
   "devDependencies": {
     "@jupyterlab/builder": "^4.0.0",
-    "rimraf": "^3.0.2"
+    "rimraf": "^5.0.5"
   },
   "files": [
     "index.js"
@@ -20,5 +20,8 @@
   "jupyterlab": {
     "extension": true,
     "outputDir": "./test_hyphens_underscore/labextension"
+  },
+  "overrides": {
+    "glob": "^9.3.5"
   }
 }

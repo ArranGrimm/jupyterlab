@@ -47,7 +47,7 @@
     "crypto": "~1.0.1",
     "dependency-graph": "^0.11.0",
     "fs-extra": "^10.1.0",
-    "glob": "~7.1.6",
+    "glob": "^9.3.5",
     "inquirer": "^9.1.4",
     "micromatch": "^4.0.2",
     "minimatch": "~3.0.4",
@@ -62,7 +62,7 @@
   },
   "devDependencies": {
     "@types/fs-extra": "^9.0.1",
-    "@types/glob": "^7.1.1",
+    "@types/glob": "^8.1.0",
     "@types/inquirer": "^9.0.3",
     "@types/micromatch": "^4.0.1",
     "@types/node": "^20.11.27",

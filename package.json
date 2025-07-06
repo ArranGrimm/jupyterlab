@@ -109,7 +109,8 @@
     "marked": "^15.0.7",
     "react": "^18.2.0",
     "type-fest": "^4.30.0",
-    "yjs": "^13.5.40"
+    "yjs": "^13.5.40",
+    "glob": "^9.3.5"
   },
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "~6.13.2",
@@ -131,5 +132,8 @@
     "lerna": "^7.1.4",
     "typedoc": "~0.27.4",
     "typedoc-plugin-mdn-links": "^4.0.4"
+  },
+  "overrides": {
+    "glob": "^9.3.5"
   }
 }
