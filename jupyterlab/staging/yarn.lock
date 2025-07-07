@@ -1628,7 +1628,7 @@ __metadata:
     "@jupyterlab/application": ~4.4.3
     "@jupyterlab/application-extension": ~4.4.3
     "@jupyterlab/apputils-extension": ~4.4.3
-    "@jupyterlab/builder": ^4.4.3
+    "@jupyterlab/builder": "file:../../builder"
     "@jupyterlab/buildutils": ^4.4.3
     "@jupyterlab/cell-toolbar-extension": ~4.4.3
     "@jupyterlab/celltags-extension": ~4.4.3
@@ -1805,9 +1805,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jupyterlab/builder@npm:^4.4.3":
+"@jupyterlab/builder@file:../../builder::locator=%40jupyterlab%2Fapplication-top%40workspace%3A.":
   version: 4.4.3
-  resolution: "@jupyterlab/builder@npm:4.4.3"
+  resolution: "@jupyterlab/builder@file:../../builder#../../builder::hash=4feede&locator=%40jupyterlab%2Fapplication-top%40workspace%3A."
   dependencies:
     "@lumino/algorithm": ^2.0.3
     "@lumino/application": ^2.4.4
@@ -1826,7 +1826,7 @@ __metadata:
     css-loader: ^6.7.1
     duplicate-package-checker-webpack-plugin: ^3.0.0
     fs-extra: ^10.1.0
-    glob: ~7.1.6
+    glob: ^9.3.5
     license-webpack-plugin: ^2.3.14
     mini-css-extract-plugin: ^2.7.0
     mini-svg-data-uri: ^1.4.4
@@ -1841,8 +1841,8 @@ __metadata:
     webpack-merge: ^5.8.0
     worker-loader: ^3.0.2
   bin:
-    build-labextension: lib/build-labextension.js
-  checksum: b6015eff6b79e29d82506c8e7f3fc2b3a1e3282bf06a4001be43329a78daceb7b13b1bb362997725828989419f35c905b3c9577a296f5beb8b808c2a4e6de849
+    build-labextension: ./lib/build-labextension.js
+  checksum: fa277278659af12de1b3aea05842e79d160fc2ab02a751e4f3bd5de6895a7c9535dc3be26a85f86c0dc103f8027f2a785a5635e35294ded32cff63d16188adf2
   languageName: node
   linkType: hard
 

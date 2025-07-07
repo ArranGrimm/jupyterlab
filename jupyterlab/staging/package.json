@@ -203,7 +203,7 @@
   "devDependencies": {
     "@babel/core": "^7.27.4",
     "@babel/preset-env": "^7.27.2",
-    "@jupyterlab/builder": "^4.4.3",
+    "@jupyterlab/builder": "file:../../builder",
     "@jupyterlab/buildutils": "^4.4.3",
     "babel-loader": "^10.0.0",
     "chokidar": "^3.4.0",

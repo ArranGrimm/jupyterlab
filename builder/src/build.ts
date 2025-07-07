@@ -154,7 +154,7 @@ export namespace Build {
       // Handle schemas.
       if (schemaDir) {
         const schemas = glob.sync(
-          path.join(path.join(packageDir, schemaDir), '*')
+          path.join(path.join(packageDir, schemaDir), '*').replace(/\\/g, '/')
         );
         const destination = path.join(schemaOutput, 'schemas', name);
 
