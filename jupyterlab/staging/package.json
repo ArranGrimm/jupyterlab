@@ -144,6 +144,7 @@
     "yjs": "^13.5.40",
     "glob": "^9.3.5",
     "ws": "8.17.1",
+    "cross-spawn": "^7.0.5",
     "@jupyterlab/ui-components": "portal:../../packages/ui-components",
     "@jupyterlab/workspaces-extension": "portal:../..//packages/workspaces-extension"
   },
