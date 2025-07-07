@@ -9,7 +9,7 @@ JupyterLab 项目中发现多个安全漏洞，需要系统性地进行修复。
 ### 已修复漏洞
 1. **inflight 依赖安全漏洞** ✅ - 完全解决
 2. **CVE-2024-37890 ws 依赖安全漏洞** ✅ - 完全解决
-3. **[预留] 第三个安全漏洞** 🔄 - 待修复  
+3. **micromatch ReDoS 安全漏洞** ✅ - 完全解决
 4. **[预留] 第四个安全漏洞** 🔄 - 待修复
 
 ---
@@ -489,6 +489,172 @@ CVE-2024-37890 ws 依赖安全漏洞修复状态：
 - **分层管理**: 不同环境的依赖需要统一管理
 - **自动化验证**: 将安全检查纳入 CI/CD 流程
 - **响应式更新**: 及时响应安全漏洞修复
+
+---
+
+## 漏洞 #3：micromatch ReDoS 安全漏洞
+
+### 问题描述
+
+NPM 包 `micromatch` 4.0.8 版本之前存在正则表达式拒绝服务攻击（ReDoS）漏洞。该漏洞出现在 `micromatch.braces()` 方法的 `index.js` 文件中，因为模式 `.*` 会贪婪匹配任何内容。通过传递恶意有效负载，模式匹配会不断回溯到输入，而找不到右括号。随着输入大小的增加，消耗时间也会增加，直到导致应用程序挂起或减速。
+
+#### 3.1 漏洞影响范围
+- **直接依赖**: buildutils 包直接依赖 micromatch ^4.0.2
+- **间接依赖**: 多个第三方包（@jest/transform、@yarnpkg/shell等）依赖旧版本
+- **安全风险**: ReDoS 攻击可能导致应用程序性能严重下降或挂起
+
+#### 3.2 依赖链分析
+通过 `yarn why micromatch` 发现多个依赖链：
+```
+micromatch@4.0.8 ← 通过 resolutions 强制解析
+├─ @jupyterlab/buildutils@workspace:buildutils
+├─ @jest/transform@npm:29.7.0 (声明: ^4.0.4)
+├─ @yarnpkg/shell@npm:4.1.3 (声明: ^4.0.2)
+└─ 其他多个第三方包
+```
+
+#### 3.3 漏洞详情
+- **漏洞类型**: ReDoS (正则表达式拒绝服务攻击)
+- **攻击方式**: 通过 micromatch.braces() 传递特制的恶意模式
+- **影响版本**: micromatch < 4.0.8
+- **修复版本**: micromatch@4.0.8
+
+### 根本原因分析
+
+1. **版本范围依赖**: 第三方包使用版本范围（如 ^4.0.2）而非固定版本
+2. **传递依赖复杂性**: 多层依赖链导致版本管理复杂
+3. **缺乏统一版本控制**: 没有全局的安全版本强制机制
+
+### 解决方案概述
+
+采用**resolutions 强制版本解析策略**：
+1. **强制版本解析**: 在根目录和 staging 环境中使用 resolutions 强制所有 micromatch 依赖解析到 4.0.8
+2. **直接依赖固定**: 将直接依赖从版本范围改为固定版本
+3. **多环境同步**: 确保所有构建环境使用相同的安全版本
+
+### 技术栈
+- **yarn resolutions**: 强制依赖版本解析的核心机制
+- **固定版本**: 避免版本范围的歧义和安全风险
+- **micromatch**: 文件模式匹配库（目标版本：4.0.8）
+
+### 实施步骤
+
+#### 步骤1: 升级直接依赖
+
+##### 1.1 修复 buildutils 包依赖
+```json
+// buildutils/package.json
+// 从
+"micromatch": "^4.0.2"
+// 改为
+"micromatch": "4.0.8"
+```
+
+#### 步骤2: 强制版本解析配置
+
+##### 2.1 根目录强制解析
+在根目录 `package.json` 的 resolutions 中添加：
+```json
+{
+  "resolutions": {
+    "micromatch": "4.0.8"
+  }
+}
+```
+
+##### 2.2 staging 环境强制解析
+在 `jupyterlab/staging/package.json` 的 resolutions 中添加：
+```json
+{
+  "resolutions": {
+    "micromatch": "4.0.8"
+  }
+}
+```
+
+#### 步骤3: 验证修复效果
+
+##### 3.1 版本统一验证
+```bash
+node ./jupyterlab/staging/yarn.js why micromatch
+```
+
+验证结果：所有 micromatch 依赖现在都解析到 4.0.8 版本 ✅
+
+##### 3.2 实际安装版本确认
+```bash
+type node_modules\micromatch\package.json | findstr version
+# 输出: "version": "4.0.8"
+```
+
+### 重要发现与解释
+
+#### yarn.lock 中的"旧版本记录"现象
+**现象**: 即使重新安装依赖，yarn.lock 中仍保留类似 `micromatch: ^4.0.4` 的记录
+
+**解释**: 这些是**依赖范围记录**，不是实际安装版本
+- 第三方包（如 @jest/transform）在其 package.json 中声明了 `micromatch: ^4.0.4`
+- yarn.lock 保留这些**声明记录**以追踪依赖来源
+- 但通过 resolutions 强制解析，**实际安装的都是 4.0.8 版本**
+
+#### 为什么这是正常且安全的
+1. **实际版本统一**: 所有 micromatch 依赖都解析到安全版本 4.0.8
+2. **依赖追踪**: yarn.lock 保留原始依赖声明便于依赖管理
+3. **安全保障**: resolutions 确保不会安装有漏洞的版本
+
+### 完整修复进度
+
+```
+micromatch ReDoS 安全漏洞修复状态：
+├── ✅ 直接依赖版本固定 - 完全解决（buildutils: 4.0.8）
+├── ✅ 根目录强制解析 - 完全解决（resolutions: 4.0.8）
+├── ✅ staging 环境强制解析 - 完全解决（resolutions: 4.0.8）
+├── ✅ 版本统一验证 - 完全解决（所有依赖解析到 4.0.8）
+├── ✅ 实际安装确认 - 完全解决（node_modules 中为 4.0.8）
+└── ✅ ReDoS 漏洞消除 - 完全解决（使用安全版本）
+```
+
+### 文件修改清单
+
+#### 直接依赖固定
+1. **`buildutils/package.json`** - micromatch: "4.0.8" ✅
+
+#### 强制版本解析
+2. **`package.json`** - 添加 resolutions: "micromatch": "4.0.8" ✅
+3. **`jupyterlab/staging/package.json`** - 添加 resolutions: "micromatch": "4.0.8" ✅
+
+#### 依赖锁定文件
+- 各级 `yarn.lock` - 依赖版本锁定，保留依赖范围记录但强制解析到 4.0.8 ✅
+
+### 测试结果
+
+#### ✅ 成功指标
+- 全项目所有 micromatch 依赖都解析到 4.0.8 版本
+- node_modules 中实际安装的是 micromatch@4.0.8
+- ReDoS 安全漏洞完全修复
+- 文件模式匹配功能正常工作
+
+#### 🔍 安全验证
+- micromatch ReDoS 漏洞完全修复
+- 所有 micromatch 相关的 ReDoS 风险已消除
+- 依赖版本统一，减少了安全管理复杂度
+
+### 最佳实践总结
+
+#### 1. resolutions 强制版本解析
+- **核心机制**: 使用 yarn resolutions 统一关键依赖版本
+- **多环境同步**: 确保所有构建环境使用相同配置
+- **安全优先**: 对安全关键依赖优先使用固定版本
+
+#### 2. 理解 yarn.lock 机制
+- **依赖范围记录**: yarn.lock 保留第三方包的依赖声明
+- **实际版本解析**: resolutions 控制实际安装版本
+- **安全验证**: 通过 `yarn why` 和实际文件检查确认版本
+
+#### 3. 安全漏洞修复策略
+- **系统性方法**: 使用 resolutions 从根本解决版本冲突
+- **全面验证**: 检查实际安装版本而非仅看 yarn.lock 记录
+- **文档记录**: 详细记录修复过程和技术决策
 
 ---
 

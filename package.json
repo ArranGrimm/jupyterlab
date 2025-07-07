@@ -111,7 +111,8 @@
     "type-fest": "^4.30.0",
     "yjs": "^13.5.40",
     "glob": "^9.3.5",
-    "ws": "8.17.1"
+    "ws": "8.17.1",
+    "micromatch": "4.0.8"
   },
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "~6.13.2",

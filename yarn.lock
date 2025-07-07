@@ -2451,7 +2451,7 @@ __metadata:
     "@types/fs-extra": ^9.0.1
     "@types/glob": ^8.1.0
     "@types/inquirer": ^9.0.3
-    "@types/micromatch": ^4.0.1
+    "@types/micromatch": 4.0.8
     "@types/node": ^20.11.27
     "@types/prettier": ~2.6.0
     "@yarnpkg/core": ^4.0.3
@@ -2462,7 +2462,7 @@ __metadata:
     fs-extra: ^10.1.0
     glob: ^9.3.5
     inquirer: ^9.1.4
-    micromatch: ^4.0.2
+    micromatch: 4.0.8
     minimatch: ~3.0.4
     os: ~0.1.1
     package-json: ^7.0.0
@@ -7096,12 +7096,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/micromatch@npm:^4.0.1":
-  version: 4.0.2
-  resolution: "@types/micromatch@npm:4.0.2"
+"@types/micromatch@npm:4.0.8":
+  version: 4.0.8
+  resolution: "@types/micromatch@npm:4.0.8"
   dependencies:
     "@types/braces": "*"
-  checksum: 6c678e9c625d5b422c6d2c1001da1c502ecc4457248343bbd324b79fd798a6563e336a4d79630d80e8202312013dd7cf8b4440afa644d04477abd26fde6fba24
+  checksum: 9ff27126b962642a2323e16bd9f15a786f2e9905cfa9d35ab24397052e8fa5f3c746d290cd1580d164a1326d5526d552f3db499a83a7f1891e8cda6bb1d8a78e
   languageName: node
   linkType: hard
 
@@ -8935,7 +8935,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"braces@npm:^3.0.2, braces@npm:~3.0.2":
+"braces@npm:^3.0.3, braces@npm:~3.0.2":
   version: 3.0.3
   resolution: "braces@npm:3.0.3"
   dependencies:
@@ -15781,13 +15781,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"micromatch@npm:^4.0.2, micromatch@npm:^4.0.4, micromatch@npm:^4.0.5":
-  version: 4.0.5
-  resolution: "micromatch@npm:4.0.5"
+"micromatch@npm:4.0.8":
+  version: 4.0.8
+  resolution: "micromatch@npm:4.0.8"
   dependencies:
-    braces: ^3.0.2
+    braces: ^3.0.3
     picomatch: ^2.3.1
-  checksum: 02a17b671c06e8fefeeb6ef996119c1e597c942e632a21ef589154f23898c9c6a9858526246abb14f8bca6e77734aa9dcf65476fca47cedfb80d9577d52843fc
+  checksum: 79920eb634e6f400b464a954fcfa589c4e7c7143209488e44baf627f9affc8b1e306f41f4f0deedde97e69cb725920879462d3e750ab3bd3c1aed675bb3a8966
   languageName: node
   linkType: hard
 
