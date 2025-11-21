@@ -1486,12 +1486,21 @@ export class WindowedList<
       if (entry.target.isConnected) {
         // Rely on the data attribute as some nodes may be hidden instead of detach
         // to preserve state.
+        let size: number;
+      
+        // Chrome 79 兼容性修复：borderBoxSize 在 Chrome 84+ 才支持
+        if (entry.borderBoxSize && entry.borderBoxSize.length > 0) {
+          size = entry.borderBoxSize[0].blockSize;
+        } else {
+          // 回退到 contentRect（Chrome 64+ 支持）
+          size = entry.contentRect.height;
+        }
         newSizes.push({
           index: parseInt(
             (entry.target as HTMLElement).dataset.windowedListIndex!,
             10
           ),
-          size: entry.borderBoxSize[0].blockSize
+          size: size
         });
       }
     }
@@ -1605,7 +1614,16 @@ export class WindowedList<
       oldNodes.length !== elements.length ||
       !oldNodes.every((node, index) => elements[index] === node)
     ) {
-      content.replaceChildren(...elements);
+      // Chrome 79 兼容性修复：replaceChildren 在 Chrome 86+ 才支持
+      if (content.replaceChildren) {
+        content.replaceChildren(...elements);
+      } else {
+        // 回退方案：手动清空并添加元素
+        while (content.firstChild) {
+          content.removeChild(content.firstChild);
+        }
+        elements.forEach(element => content.appendChild(element));
+      }
     }
 
     return elements;

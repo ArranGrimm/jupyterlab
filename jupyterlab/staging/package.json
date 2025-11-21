@@ -117,11 +117,9 @@
     "@jupyterlab/tooltip-extension": "~4.4.10",
     "@jupyterlab/translation": "~4.4.10",
     "@jupyterlab/translation-extension": "~4.4.10",
-    "@jupyterlab/ui-components": "~4.4.10",
     "@jupyterlab/ui-components-extension": "~4.4.10",
     "@jupyterlab/vega5-extension": "~4.4.10",
     "@jupyterlab/workspaces": "~4.4.10",
-    "@jupyterlab/workspaces-extension": "~4.4.10",
     "@lezer/common": "^1.0.0",
     "@lezer/highlight": "^1.0.0",
     "@lumino/algorithm": "^2.0.0",
@@ -140,10 +138,12 @@
     "@lumino/virtualdom": "^2.0.0",
     "@lumino/widgets": "^2.3.1-alpha.0",
     "@microsoft/fast-element": "^1.12.0",
-    "@microsoft/fast-foundation": "^2.49.2",
+    "@microsoft/fast-foundation": "2.49.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "yjs": "^13.5.40"
+    "yjs": "^13.5.40",
+    "@jupyterlab/ui-components": "portal:/workspaces/jupyterlab/packages/ui-components",
+    "@jupyterlab/workspaces-extension": "portal:/workspaces/jupyterlab/packages/workspaces-extension"
   },
   "dependencies": {
     "@jupyterlab/application": "~4.4.10",
@@ -199,8 +199,11 @@
     "@jupyterlab/workspaces-extension": "~4.4.10"
   },
   "devDependencies": {
+    "@babel/core": "^7.28.5",
+    "@babel/preset-env": "^7.28.5",
     "@jupyterlab/builder": "^4.4.10",
     "@jupyterlab/buildutils": "^4.4.10",
+    "babel-loader": "^10.0.0",
     "chokidar": "^3.4.0",
     "css-loader": "^6.7.1",
     "duplicate-package-checker-webpack-plugin": "^3.0.0",
